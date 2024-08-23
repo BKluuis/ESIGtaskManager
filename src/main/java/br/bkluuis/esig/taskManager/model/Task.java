@@ -2,14 +2,17 @@ package br.bkluuis.esig.taskManager.model;
 
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
-@Getter
-@Setter
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "tm_task")
 public class Task implements Serializable {
@@ -26,7 +29,9 @@ public class Task implements Serializable {
     @Enumerated(EnumType.STRING)
     @Column(name = "priority", length = 50)
     private Priority priority;
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "deadline")
-    private Date deadline;
+    private LocalDateTime deadline;
+    @Builder.Default
+    @Column(name = "is_active", nullable = false, columnDefinition = "BOOLEAN DEFAULT true")
+    private Boolean isActive = true;
 }

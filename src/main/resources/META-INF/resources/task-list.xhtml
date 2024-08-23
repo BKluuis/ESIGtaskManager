@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition lang="pt-br"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:pe="http://primefaces.org/ui/extensions"
+                xmlns:p="http://primefaces.org/ui"
+                template="/layout.xhtml">
+    <ui:define name="body">
+        <ui:include src="search-panel.xhtml"/>
+        <p:dataTable id="datatable-tasks" var="task" value="#{taskListMBean.filteredTasks}" scrollable="true" scrollHeight="80vh">
+            <p:column style="width:1%" headerText="Número">
+                <h:outputText value="#{task.id}" />
+            </p:column>
+            <p:column style="width:8%" headerText="Título">
+                <h:outputText value="#{task.title}" />
+            </p:column>
+            <p:column style="width:8%" headerText="Responsável">
+                <h:outputText value="#{task.responsible.name}" />
+            </p:column>
+            <p:column style="width:8%" headerText="Data de conclusão">
+                <h:outputText value="#{task.isActive ? task.deadline : 'Concluído'}">
+                    <f:convertDateTime pattern="dd/MM/yyyy - HH:mm" type="localDate"/>
+                </h:outputText>
+            </p:column>
+            <p:column style="width:8%" headerText="Ações">
+                <p:commandButton value="Editar" action="#{taskListMBean.editTask(task)}" styleClass="ui-button-raised ui-button-flat" />
+
+                <p:commandButton type="button" value="Excluir" styleClass="ui-button-raised ui-button-flat" process="@this" onclick="PF('deleteDialog_#{task.id}').show()"/>
+                <p:confirmDialog widgetVar="deleteDialog_#{task.id}" showEffect="fade" hideEffect="fade" responsive="true" width="350"
+                                 header="Excluir" message="Tem certeza que deseja excluir #{task.title}?">
+                    <p:commandButton value="Cancelar" type="button" styleClass="ui-confirmdialog-no ui-button-flat" onclick="PF('deleteDialog_#{task.id}').hide();"/>
+                    <p:commandButton value="Confirmar" styleClass="ui-confirmdialog-yes" update="datatable-tasks"
+                                     action="#{taskListMBean.deleteTask(task)}" onclick="PF('deleteDialog_#{task.id}').hide();">
+                    </p:commandButton>
+                </p:confirmDialog>
+
+                <p:commandButton type="button" value="Concluir" styleClass="ui-button-raised ui-button-flat" rendered="#{task.isActive}" process="@this" onclick="PF('finishDialog_#{task.id}').show()" />
+                <p:confirmDialog widgetVar="finishDialog_#{task.id}" showEffect="fade" hideEffect="fade" responsive="true" width="350"
+                                 header="Concluir" message="Tem certeza que deseja concluir #{task.title}?">
+                    <p:commandButton value="Cancelar" type="button" styleClass="ui-confirmdialog-no ui-button-flat" onclick="PF('finishDialog_#{task.id}').hide();"/>
+                    <p:commandButton value="Confirmar" styleClass="ui-confirmdialog-yes" update="datatable-tasks"
+                                     action="#{taskListMBean.finishTask(task)}" onclick="PF('finishDialog_#{task.id}').hide();">
+                    </p:commandButton>
+                </p:confirmDialog>
+            </p:column>
+        </p:dataTable>
+    </ui:define>
+</ui:composition>

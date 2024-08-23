@@ -4,7 +4,8 @@ body {
 	font-size: 12px;
 	font-family: Arial, Helvetica, sans-serif;
 	margin: 0px;
-	font-weight: normal
+	font-weight: normal;
+	background-color: #f8f9fa;
 }
 
 header {
@@ -16,15 +17,26 @@ header {
 	box-shadow: 0px 2px 2px #ccc
 }
 
-#conteudo {
-	padding: 0px 8px
+.container {
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.search-panel {
+    width: 80%;
+    margin-right:auto;
+    margin-left:auto;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
 }
 
 footer {
 	border-top: 1px solid #ccc;
 	padding: 5px 8px;
-	margin-top: 20px;
-	margin-bottom: 10px
+    margin-top: 20px;
+	margin-bottom: 10px;
+	min-height: 10vh;
 }
 
 h1 {
@@ -32,5 +44,9 @@ h1 {
 	font-weight: 500;
 	padding: 0px;
 	margin: 0px;
-	margin-bottom: 10px
+	margin-bottom: 10px;
+}
+
+button.ui-button {
+    margin-right: .5rem;
 }
