@@ -50,3 +50,8 @@ h1 {
 button.ui-button {
     margin-right: .5rem;
 }
+
+.ui-panelgrid-cell {
+    display: flex;
+    align-items: center;
+}

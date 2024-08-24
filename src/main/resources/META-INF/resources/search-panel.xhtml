@@ -22,17 +22,19 @@
                 </p:row>
                 <p:row>
                     <h:outputLabel for="description" value="Título/Descrição:" />
-                    <p:column rowspan="4">
+                    <p:column class="ui-g-10">
                         <p:inputTextarea id="description" label="Título/Descrição" value="#{taskListMBean.searchExample.keywords}" rows="4" cols="103"/>
                     </p:column>
                 </p:row>
-                <h:outputLabel for="situation" value="Situação:" />
-                <p:selectOneMenu id="situation" value="#{taskListMBean.searchExample.isActive}">
-                    <f:selectItem itemLabel="Ambos" itemValue="#{null}"/>
-                    <f:selectItem itemLabel="Em andamento" itemValue="#{true}"/>
-                    <f:selectItem itemLabel="Concluído" itemValue="#{false}"/>
-                </p:selectOneMenu>
-                <p:commandButton value="Buscar" action="#{taskListMBean.search}" update="datatable-tasks"/>
+                <p:row>
+                    <h:outputLabel for="situation" value="Situação:"/>
+                    <p:selectOneMenu id="situation" value="#{taskListMBean.searchExample.isActive}">
+                        <f:selectItem itemLabel="Ambos" itemValue="#{null}"/>
+                        <f:selectItem itemLabel="Em andamento" itemValue="#{true}"/>
+                        <f:selectItem itemLabel="Concluído" itemValue="#{false}"/>
+                    </p:selectOneMenu>
+                    <p:commandButton value="Buscar" action="#{taskListMBean.search}" update="datatable-tasks"/>
+                </p:row>
             </p:panelGrid>
         </h:form>
     </p:card>

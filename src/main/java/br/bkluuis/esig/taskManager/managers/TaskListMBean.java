@@ -58,6 +58,9 @@ public class TaskListMBean implements Serializable {
     }
 
     public void search() {
+        if (searchExample.getKeywords() != null){
+            searchExample.setKeywords(searchExample.getKeywords().trim());
+        }
         filteredTasks = tasks.stream()
                 .filter(task ->
                         (searchExample.getKeywords() == null || searchExample.getKeywords().isEmpty() ||

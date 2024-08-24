@@ -1,13 +1,12 @@
 package br.bkluuis.esig.taskManager.model;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+
 
 import java.io.Serializable;
 
-@Getter
-@Setter
+@Data
 @Entity
 @Table(name = "tm_user")
 public class User implements Serializable {
