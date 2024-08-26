@@ -47,6 +47,12 @@ h1 {
 	margin-bottom: 10px;
 }
 
+.centered {
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+}
+
 button.ui-button {
     margin-right: .5rem;
 }

@@ -4,19 +4,20 @@
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                xmlns:pe="http://primefaces.org/ui/extensions"
+                xmlns:fn="http://java.sun.com/jsp/jstl/functions"
                 xmlns:p="http://primefaces.org/ui"
-                template="/layout.xhtml">
+                template="template/layout.xhtml">
     <ui:define name="body">
         <ui:include src="search-panel.xhtml"/>
-        <p:dataTable id="datatable-tasks" var="task" value="#{taskListMBean.filteredTasks}" scrollable="true" scrollHeight="80vh">
-            <p:column style="width:1%" headerText="Número">
+        <p:dataTable id="datatable-tasks" var="task" value="#{taskListMBean.filteredTasks}" scrollable="true"
+                     scrollHeight="80vh" allowSorting="true" sortMode="single" tableStyle="width: auto">
+            <p:column sortBy="#{task.id}" sortOrder="asc" style="width:1%" headerText="Número">
                 <h:outputText value="#{task.id}" />
             </p:column>
-            <p:column style="width:8%" headerText="Título">
+            <p:column sortBy="#{task.title}"  style="width:8%" headerText="Título">
                 <h:outputText value="#{task.title}" />
             </p:column>
-            <p:column style="width:8%" headerText="Responsável">
+            <p:column sortBy="#{task.responsible.name}" style="width:8%" headerText="Responsável">
                 <h:outputText value="#{task.responsible.name}" />
             </p:column>
             <p:column style="width:8%" headerText="Data de conclusão">
@@ -28,8 +29,8 @@
                 <p:commandButton value="Editar" action="#{taskListMBean.editTask(task)}" styleClass="ui-button-raised ui-button-flat" />
 
                 <p:commandButton type="button" value="Excluir" styleClass="ui-button-raised ui-button-flat" process="@this" onclick="PF('deleteDialog_#{task.id}').show()"/>
-                <p:confirmDialog widgetVar="deleteDialog_#{task.id}" showEffect="fade" hideEffect="fade" responsive="true" width="350"
-                                 header="Excluir" message="Tem certeza que deseja excluir #{task.title}?">
+                <p:confirmDialog widgetVar="deleteDialog_#{task.id}" styleClass="centered" showEffect="fade" hideEffect="fade" responsive="true" width="350"
+                                 header="Excluir" message="Tem certeza que deseja excluir #{task.title}?" icon="pi-exclamation-circle">
                     <p:commandButton value="Cancelar" type="button" styleClass="ui-confirmdialog-no ui-button-flat" onclick="PF('deleteDialog_#{task.id}').hide();"/>
                     <p:commandButton value="Confirmar" styleClass="ui-confirmdialog-yes" update="datatable-tasks"
                                      action="#{taskListMBean.deleteTask(task)}" onclick="PF('deleteDialog_#{task.id}').hide();">
@@ -37,7 +38,7 @@
                 </p:confirmDialog>
 
                 <p:commandButton type="button" value="Concluir" styleClass="ui-button-raised ui-button-flat" rendered="#{task.isActive}" process="@this" onclick="PF('finishDialog_#{task.id}').show()" />
-                <p:confirmDialog widgetVar="finishDialog_#{task.id}" showEffect="fade" hideEffect="fade" responsive="true" width="350"
+                <p:confirmDialog widgetVar="finishDialog_#{task.id}" styleClass="centered" showEffect="fade" hideEffect="fade" responsive="true" width="350"
                                  header="Concluir" message="Tem certeza que deseja concluir #{task.title}?">
                     <p:commandButton value="Cancelar" type="button" styleClass="ui-confirmdialog-no ui-button-flat" onclick="PF('finishDialog_#{task.id}').hide();"/>
                     <p:commandButton value="Confirmar" styleClass="ui-confirmdialog-yes" update="datatable-tasks"
@@ -45,6 +46,9 @@
                     </p:commandButton>
                 </p:confirmDialog>
             </p:column>
+            <f:facet name="footer">
+                <span class="font-bold">Total: #{fn:length(taskListMBean.filteredTasks)} tarefas.</span>
+            </f:facet>
         </p:dataTable>
     </ui:define>
 </ui:composition>

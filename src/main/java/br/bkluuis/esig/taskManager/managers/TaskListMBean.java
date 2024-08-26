@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Component
@@ -68,6 +69,6 @@ public class TaskListMBean implements Serializable {
                                 task.getTitle().toLowerCase().contains(searchExample.getKeywords().toLowerCase())) &&
                         (searchExample.getResponsibleName() == null || searchExample.getResponsibleName().isEmpty() || task.getResponsible().getName().equals(searchExample.getResponsibleName())) &&
                         (searchExample.getIsActive() == null || task.getIsActive() == searchExample.getIsActive())
-                ).toList();
+                ).collect(Collectors.toCollection(ArrayList<Task>::new));
     }
 }

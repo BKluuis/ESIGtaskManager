@@ -8,10 +8,6 @@
                 xmlns:p="http://primefaces.org/ui"
                 template="template/layout.xhtml">
     <ui:define name="body">
-        <f:metadata>
-            <f:viewParam name="id" value="#{editTaskMBean.task.id}" />
-            <f:viewAction action="#{editTaskMBean.load}"/>
-        </f:metadata>
         <p:card style="width: 80%; margin: auto;">
             <h:form id="edit-form">
                 <p:panelGrid columns="6" styleClass="ui-panelgrid-blank">
@@ -20,13 +16,13 @@
                             <h:outputLabel for="title" value="Responsável:" />
                         </p:column>
                         <p:column class="ui-g-4">
-                            <p:inputText id="title" value="#{editTaskMBean.task.title}" style="width:100%;"/>
+                            <p:inputText id="title" value="#{newTaskMBean.task.title}" style="width:100%;"/>
                         </p:column>
                         <p:column class="ui-g-2">
                             <h:outputLabel for="responsible" value="Responsável:" />
                         </p:column>
                         <p:column>
-                            <p:selectOneMenu id="responsible" value="#{editTaskMBean.userName}" dynamic="true">
+                            <p:selectOneMenu id="responsible" value="#{newTaskMBean.userName}" dynamic="true">
                                 <f:selectItems value="#{userMBean.users}" />
                             </p:selectOneMenu>
                         </p:column>
@@ -36,8 +32,8 @@
                             <h:outputLabel for="description" value="Descrição:"/>
                         </p:column>
                         <p:column class="ui-g-10">
-                            <p:inputTextarea id="description" label="Descrição" value="#{editTaskMBean.task.description}" rows="4" style="width:100%"
-                             maxlength="255"/>
+                            <p:inputTextarea id="description" label="Descrição" value="#{newTaskMBean.task.description}" rows="4" style="width:100%"
+                                             maxlength="255"/>
                         </p:column>
                     </p:row>
                     <p:row>
@@ -45,7 +41,7 @@
                             <h:outputLabel for="situation" value="Situação:"/>
                         </p:column>
                         <p:column>
-                            <p:selectOneMenu id="situation" value="#{editTaskMBean.task.isActive}">
+                            <p:selectOneMenu id="situation" value="#{newTaskMBean.task.isActive}">
                                 <f:selectItem itemLabel="Em andamento" itemValue="#{true}"/>
                                 <f:selectItem itemLabel="Concluído" itemValue="#{false}"/>
                             </p:selectOneMenu>
@@ -54,31 +50,24 @@
                             <p:outputLabel for="deadline" value="Prazo:"/>
                         </p:column>
                         <p:column class="ui-g-3">
-                            <p:datePicker id="deadline" value="#{editTaskMBean.task.deadline}"/>
+                            <p:datePicker id="deadline" value="#{newTaskMBean.task.deadline}"/>
                         </p:column>
                         <p:column class="ui-g-1">
                             <p:outputLabel for="priority" value="Prioridade:"/>
                         </p:column>
                         <p:column>
-                            <p:selectOneMenu id="priority" value="#{editTaskMBean.task.priority}" showButtonBar="true">
-                                <f:selectItems value="#{editTaskMBean.priorityValues}" var="priority" itemValue="#{priority}" itemLabel="#{priority.name}"/>
+                            <p:selectOneMenu id="priority" value="#{newTaskMBean.task.priority}" showButtonBar="true">
+                                <f:selectItems value="#{newTaskMBean.priorityValues}" var="priority" itemValue="#{priority}" itemLabel="#{priority.name}"/>
                             </p:selectOneMenu>
                         </p:column>
                     </p:row>
                     <p:row>
                         <p:column class="ui-g-8"> </p:column>
                         <p:column>
-                            <p:commandButton type="button" value="Salvar" styleClass="ui-button-raised" style="width:100%" process="@this" >
-                                <p:confirm header="Salvar" message="Tem certeza que deseja salvar as alterações?" icon="pi pi-exclamation-triangle"/>
-                            </p:commandButton>
-                            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" responsive="true" width="350">
-                                <p:commandButton value="Cancelar" type="button" styleClass="ui-confirmdialog-no ui-button-flat" />
-                                <p:commandButton value="Confirmar" styleClass="ui-confirmdialog-yes" action="#{editTaskMBean.save}" >
-                                </p:commandButton>
-                            </p:confirmDialog>
+                            <p:commandButton value="Salvar" action="#{newTaskMBean.save}" style="width:100%" />
                         </p:column>
                         <p:column>
-                            <p:commandButton value="Cancelar" action="task-list.xhtml?faces-redirect=true" styleClass="ui-button-danger" style="width:100%"/>
+                            <p:commandButton value="Cancelar" action="task-list.xhtml/faces-redirect=true" styleClass="ui-button-danger" style="width:100%"/>
                         </p:column>
                     </p:row>
                 </p:panelGrid>
