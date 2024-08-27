@@ -17,6 +17,6 @@ COPY --from=build /app/target/esig.task-manager-1.0.0.jar /app/app.jar
 
 WORKDIR /app
 
-EXPOSE 8080:8080
+EXPOSE 8080
 
 ENTRYPOINT ["java", "-jar", "app.jar"]
