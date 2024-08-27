@@ -1,0 +1,18 @@
+services:
+  back:
+    build: .
+    ports:
+      - 8080:8080
+    depends_on:
+      db:
+        condition: service_healthy
+  db:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: supercool
+      POSTGRES_DB: esigtask
+    healthcheck:
+      test: [ "CMD-SHELL", "sh -c 'pg_isready -U postgres -d esigtask'" ]
+      interval: 10s
+      timeout: 3s
+      retries: 3
