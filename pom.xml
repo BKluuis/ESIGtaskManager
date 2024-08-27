@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>br.bkluuis</groupId>
-	<artifactId>esig.taskManager</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>esig.taskManager</name>
+	<artifactId>esig.task-manager</artifactId>
+	<version>1.0.0</version>
+	<name>esig.task-manager</name>
 	<description>Projeto de sistema de gestão de tarefas para a avaliação técnica da ESIG</description>
 	<url/>
 	<licenses>
@@ -93,18 +93,6 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
-<!--	&lt;!&ndash; JoinFaces &ndash;&gt;-->
-<!--	<dependencyManagement>-->
-<!--		<dependencies>-->
-<!--			<dependency>-->
-<!--				<groupId>org.joinfaces</groupId>-->
-<!--				<artifactId>joinfaces-dependencies</artifactId>-->
-<!--				<version>${joinfaces.version}</version>-->
-<!--				<type>pom</type>-->
-<!--				<scope>import</scope>-->
-<!--			</dependency>-->
-<!--		</dependencies>-->
-<!--	</dependencyManagement>-->
 
 	<build>
 		<plugins>
