@@ -1,12 +1,6 @@
 services:
-  back:
-    build: .
-    ports:
-      - 8080:8080
-    depends_on:
-      db:
-        condition: service_healthy
   db:
+    container_name: database
     image: postgres
     environment:
       POSTGRES_PASSWORD: supercool
@@ -16,3 +10,13 @@ services:
       interval: 10s
       timeout: 3s
       retries: 3
+  back:
+    container_name: server
+    build: .
+    ports:
+      - 8080:8080
+    environment:
+      DATABASE_URL: database
+    depends_on:
+      db:
+        condition: service_healthy
