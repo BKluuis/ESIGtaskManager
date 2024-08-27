@@ -93,18 +93,6 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
-<!--	&lt;!&ndash; JoinFaces &ndash;&gt;-->
-<!--	<dependencyManagement>-->
-<!--		<dependencies>-->
-<!--			<dependency>-->
-<!--				<groupId>org.joinfaces</groupId>-->
-<!--				<artifactId>joinfaces-dependencies</artifactId>-->
-<!--				<version>${joinfaces.version}</version>-->
-<!--				<type>pom</type>-->
-<!--				<scope>import</scope>-->
-<!--			</dependency>-->
-<!--		</dependencies>-->
-<!--	</dependencyManagement>-->
 
 	<build>
 		<plugins>
