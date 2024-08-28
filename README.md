@@ -16,7 +16,7 @@ expandir funcionalidades como auditoria, adição de informações como foto, da
 - **Página de edição**: Esta página é acessável pela tela inicial ao clicar na ação "Editar" de uma tarefa. Nela, é possível alterar todas as informações sobre a tarefa menos o id, pois é de uso interno ao banco de dados.
   As alterações só são salvas no banco se o usuário clicar no botão "Salvar" e confirmar o prompt de confirmação.
 - **Página de nova tarefa**: Esta página pode ser acessada pela barra de navegação no botão "Nova tarefa". Nela, o usuário deve preencher todas as informações de uma tarefa. A tarefa só é salva ao clicar no botão "Salvar" e confirmar o prompt de confirmação.
-
+- **Página de novo usuário**: Esta página pode ser acessada pela barra de navegação no botão "Novo usuário". Nela, é possível adicionar um novo usuário fornecendo apenas um nome
 ## Tecnologias Utilizadas
 - **JavaServer Faces (JSF)**: Utilizado para construir a interface do usuário.
 - **PrimeFaces**: Biblioteca JSF usada para melhorar os componentes da interface.
