@@ -1,12 +1,21 @@
 # Sistema de Gerenciamento de Tarefas
 
 ## Visão Geral
-Este projeto foi desenvolvido como parte de uma avaliação técnica para o Grupo ESIG. O objetivo foi implementar um 
+Este projeto foi desenvolvido como parte de uma avaliação técnica para o Grupo ESIG. O objetivo foi implementar um
 sistema de gerenciamento de tarefas utilizando JavaServer Faces (JSF) e PostgreSQL para persistência de dados.
 
 O sistema é um CRUD de tarefas com 3 páginas: listagem, edição e criação de tarefas, estando a deleção presente na página de listagem. Além de tarefas, o sistema contém uma implementação
 e armazenamento no banco de dados de um modelo simples de usuário, que é relacionado à tarefa pelo campo responsável. Com a utilização desse modelo, é possível
 expandir funcionalidades como auditoria, adição de informações como foto, dados de contato, etc.
+
+## Instruções de uso
+- **Página inicial**: É nesta página em que você pode visualizar todas as tarefas existentes. Ela contém um card com opções de pesquisa e uma tabela ordenável com as tarefas filtradas. Cada tarefa contém 3 botões de ação:
+    -  Editar, que leva à tela de edição desta tarefa;
+    -  Excluir, que abre um prompt de confirmação perguntando se o usuário deseja excluir a tarefa;
+    -  Concluir, que altera o status da tarefa para concluído;
+- **Página de edição**: Esta página é acessável pela tela inicial ao clicar na ação "Editar" de uma tarefa. Nela, é possível alterar todas as informações sobre a tarefa menos o id, pois é de uso interno ao banco de dados.
+  As alterações só são salvas no banco se o usuário clicar no botão "Salvar" e confirmar o prompt de confirmação.
+- **Página de nova tarefa**: Esta página pode ser acessada pela barra de navegação no botão "Nova tarefa". Nela, o usuário deve preencher todas as informações de uma tarefa. A tarefa só é salva ao clicar no botão "Salvar" e confirmar o prompt de confirmação.
 
 ## Tecnologias Utilizadas
 - **JavaServer Faces (JSF)**: Utilizado para construir a interface do usuário.
@@ -43,7 +52,7 @@ spring.datasource.password=sua_senha
 spring.jpa.hibernate.ddl-auto=update
 ```
 
-### Executando o Projeto 
+### Executando o Projeto
 1. Clone o repositório:
 
 ```bash
